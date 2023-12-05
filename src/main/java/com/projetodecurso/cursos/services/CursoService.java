@@ -15,9 +15,7 @@ public class CursoService {
     private CursoRepository cursoRepository;
 
     public Curso createCourse(Curso curso){
-        this.cursoRepository.createCourse(curso);
-
-        return curso;
+        return this.cursoRepository.createCourse(curso);
     }
 
     public Curso updateCourse(int codigo, Curso curso) throws SQLException {

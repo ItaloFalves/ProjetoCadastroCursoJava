@@ -1,7 +1,6 @@
 package com.projetodecurso.cursos.repositories;
 
 import com.projetodecurso.cursos.db.DB;
-import com.projetodecurso.cursos.db.DbException;
 import com.projetodecurso.cursos.entities.Curso;
 import org.springframework.stereotype.Repository;
 
@@ -14,9 +13,10 @@ public class CursoRepository {
     Connection conn = null;
     PreparedStatement st = null;
 
-    public void createCourse(Curso curso) {
+    public Curso createCourse(Curso curso) {
 
         PreparedStatement st = null;
+        Curso retorno = new Curso();
 
         try {
             conn = DB.getConnection();
@@ -49,6 +49,14 @@ public class CursoRepository {
         } finally {
             DB.closeStatement(st);
             DB.closeConnection();
+
+            retorno = new Curso();
+            retorno.setCodigo(curso.getCodigo());
+            retorno.setDuracao(curso.getDuracao());
+            retorno.setNome(curso.getNome());
+            retorno.setDescricao(curso.getDescricao());
+
+            return retorno;
         }
     }
 
